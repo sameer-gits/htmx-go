@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sameer-gits/htmx-go/api"
-	"github.com/sameer-gits/htmx-go/staticpages"
+	"github.com/sameer-gits/htmx-go/routes"
 )
 
 func main() {
-	http.HandleFunc("/", api.Handler)
-	http.HandleFunc("/page", staticpages.Page)
-	http.HandleFunc("/page2", staticpages.PageTwo)
-	fmt.Println("Server is running on port 8080")
-	http.ListenAndServe(":8080", nil)
+    http.HandleFunc("/", routes.Index)
+    http.HandleFunc("/page", routes.Page)
+    http.HandleFunc("/page2", routes.PageTwo)
+    http.HandleFunc("/uuid", routes.HandleUUID)
+    fmt.Println("Server is running on port 8080")
+    http.ListenAndServe(":8080", nil)
 }
