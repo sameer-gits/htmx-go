@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-
+    "os"
 	"github.com/sameer-gits/htmx-go/routes"
 )
 
@@ -17,5 +17,11 @@ func main() {
     http.HandleFunc("/page2", routes.PageTwo)
     http.HandleFunc("/uuid", routes.HandleUUID)
     fmt.Println("Server is running on port http://localhost:8080")
-    http.ListenAndServe(":8080", nil)
+    port := os.Getenv("PORT")
+
+    if port == "" {
+        port = "8080"
+    }
+
+    http.ListenAndServe("0.0.0.0:" + port, nil)
 }
